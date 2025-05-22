@@ -37,9 +37,10 @@ node . --force
    ```bash
    npm i
    ```
+5. OPTIONAL: install postman from: [postman.com](https://www.postman.com/downloads/) for testing apis.
 ---
 
-## ⚙️ Installing dependencies
+## ⚙️ more fluid explanation must come here.
 
 
 ---
@@ -54,7 +55,7 @@ PORT=4000                     # Default server port
 JWT_SECRET=<your_jwt_secret>  # Secure random JWT secret
 
 # PostgreSQL configuration
-DB_NAME=<your_db_name>        # e.g. stores-platform
+DB_NAME=stores-platform
 DB_USERNAME=<your_db_user>    # e.g. postgres
 DB_PASSWORD=<your_db_pass>    # e.g. 12345678
 DB_HOST=localhost             # Database host
@@ -63,7 +64,7 @@ DB_PORT=5432                  # Database port
 NODE_ENV=development          # "development" or "production"
 ```
 
-> **Note**: `.env.example` is for reference—create your own `.env`.
+> **Note**: create your own `.env` file and fill it.
 
 ---
 
@@ -74,15 +75,7 @@ NODE_ENV=development          # "development" or "production"
    ```bash
    node . --buildDataBase
    ```
-3. **Rebuild** (drop & create):
-   ```bash
-   node . --rebuildDataBase
-   ```
-4. **Update** tables (migrations):
-   ```bash
-   node . --updateTables
-   ```
-
+3. exist using ctrl+c
 ---
 
 ## 🚀 Running the Server
@@ -121,11 +114,9 @@ NODE_ENV=development          # "development" or "production"
 ```text
 ├── Controllers/               # Express route handlers
 ├── Database/                  # Database config & migrations
-│   └── config/
 ├── app.js                     # Express app setup
 ├── index.js                   # Entry point + flag handling
-├── package.json               # Dependencies & scripts
-└── .env.example               # Sample environment variables
+└── package.json               # Dependencies & scripts
 ```
 
 ---
@@ -134,5 +125,6 @@ NODE_ENV=development          # "development" or "production"
 
 - Replace placeholder values in `.env`.  
 - Add new controllers/routes under `Controllers/`.  
-- Extend DB migrations or seed data in `Database/config/`.  
-- Integrate testing and CI/CD workflows.  
+- Extend DB migrations or seed data in `Database/`.  
+- Integrate testing and CI/CD workflows.
+- Use swagger for api explanations. 

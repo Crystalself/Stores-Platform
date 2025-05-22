@@ -12,8 +12,8 @@ A platform connecting merchants, stores, and customers through an interactive an
 ## Clone repository
 
    ```bash
-   git clone <your-repo-url>
-   cd stores-platform
+      git clone https://github.com/Crystalself/Stores-Platform.git
+      cd stores-platform
    ```
 
 ## ✨ Key Features
@@ -76,7 +76,6 @@ A platform connecting merchants, stores, and customers through an interactive an
 ---
 
 ## 📄 License
-MIT License – Open source for educational and non-commercial use.
 
 ---
 
