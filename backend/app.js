@@ -4,6 +4,9 @@ const helmet = require("helmet");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const router = require("./Controllers");
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./dump/swagger-docs.json');
+
 const app = express();
 
 app.set("PORT", process.env.PORT || 4001);
@@ -30,7 +33,7 @@ app.use(cors({
 app.use(helmet());
 app.use(express.json({limit: "2mb"}));
 app.use(cookieParser());
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(router);
 
 module.exports = app;
