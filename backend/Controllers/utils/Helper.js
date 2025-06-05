@@ -3,7 +3,31 @@ const {OAuth2Client} = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_AUTH2_CLIENT_ID, process.env.GOOGLE_AUTH2_SECRET);
 const path = require("path");
 const fs = require("fs");
+const imageTypes = ['png', 'jpeg', 'jpg'];
+const mimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+const {object, string} = require('yup');
+
 module.exports = class Helper{
+    static yupImgValidation = object()
+        .shape({
+            name: string().test(
+                "fileName",
+                "${path} is not valid",
+                (value) => value && imageTypes.indexOf(value.slice(((value.lastIndexOf('.') -1 ) >>> 0) + 2 )) !== -1
+            ),
+            mimetype: string().test(
+                "fileName",
+                "${path} is not valid",
+                (value) => value && mimeTypes.indexOf(value) !== -1
+            ),
+            size: string().test(
+                "size",
+                "${path} size is too large",
+                (value) => value && (value / (1024 * 1024)) < 5
+            ),
+        })
+
+
     static getIpInfo = async (ip) => {
         try {
             const {data} = await axios.get(`https://ipapi.co/${ip}/json`);
@@ -39,26 +63,14 @@ module.exports = class Helper{
 
     static removeFileByUrl = async (url) => {
         try {
-            // Skip if URL is not provided
-            if (!url) {
-                return;
-            }
-
-            // Parse the URL path
+            if (!url) return;
             const urlPath = (new URL(url)).pathname;
-
-            // Create absolute path to the file using project root
             const urlFsPath = path.join(__dirname, "..", "..", urlPath);
-
-            // Check if file exists before attempting to delete
             fs.access(urlFsPath, fs.constants.F_OK, (err) => {
                 if (err) {
-                    // File does not exist, log and return
                     console.warn(`File not found at ${urlFsPath}`);
                     return;
                 }
-
-                // File exists, attempt to delete
                 fs.unlink(urlFsPath, (unlinkErr) => {
                     if (unlinkErr) {
                         console.error(`Error unlinking file at ${urlFsPath}:`, unlinkErr);

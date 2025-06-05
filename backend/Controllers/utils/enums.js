@@ -20,6 +20,7 @@ const ERROR_MESSAGES = {
     OTP_EXPIRED: {status: 409, message: "OTP_EXPIRED"},
     EMAIL_NOT_SENT: {status: 409, message: "EMAIL_NOT_SENT"},
     WRONG_OTP: {status: 409, message: "WRONG_OTP"},
+    PRODUCT_DOES_NOT_EXIST: {status: 409, message: "PRODUCT_DOES_NOT_EXIST"},
 }
 
 

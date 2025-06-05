@@ -7,17 +7,12 @@ const uploadFiles = async (filesObj, specificFolder) => {
     for (const [key , value] of Object.entries(filesObj)) {
         const fileName = Date.now() + (value.name).replaceAll(' ', '');
         const moveFunction = promisify(value.mv);
-
-        // Create absolute path to uploads directory
         const uploadPath = join(__dirname, "..", "..", "uploads", specificFolder, fileName);
-
-        // Ensure the directory exists
         const uploadDir = join(__dirname, "..", "..", "uploads", specificFolder);
         const fs = require('fs');
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir, { recursive: true });
         }
-
         await moveFunction(uploadPath);
         filesToUpdate[key] = `${URL}/${specificFolder}/${fileName}`;
     }
@@ -29,7 +24,6 @@ const uploadFilesArray = async (filesArray, specificFolder) => {
         const files = filesArray;
         let filesToUpdate = [];
 
-        // Ensure the directory exists
         const uploadDir = join(__dirname, "..", "..", "uploads", specificFolder);
         const fs = require('fs');
         if (!fs.existsSync(uploadDir)) {
@@ -39,10 +33,7 @@ const uploadFilesArray = async (filesArray, specificFolder) => {
         for (let file of files) {
             const fileName = Date.now() + file.name;
             const moveFunction = promisify(file.mv);
-
-            // Create absolute path to file
             const uploadPath = join(__dirname, "..", "..", "uploads", specificFolder, fileName);
-
             await moveFunction(uploadPath);
             filesToUpdate.push(`${URL}/${specificFolder}/${fileName}`);
         }

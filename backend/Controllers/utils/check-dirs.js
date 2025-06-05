@@ -4,6 +4,7 @@ const paths = {
     dump: join(__dirname, "..", "..", "dump"),
     uploads:join(__dirname ,"..","..","uploads"),
     profile:join(__dirname ,"..","..","uploads","profile"),
+    products:join(__dirname ,"..","..","uploads","products"),
 }
 
 module.exports = () => {
