@@ -8,6 +8,7 @@ module.exports = {
     user_session: require('./user_session'),
     product: require('./product'),
     cart: require('./cart'),
+    cart_product: require('./cart_product'),
     order: require('./order'),
     chat: require('./chat'),
     message: require('./message'),

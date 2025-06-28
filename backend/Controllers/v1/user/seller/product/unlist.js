@@ -1,5 +1,5 @@
-const Product = require("../../../../Classes/Product");
-const { ERRORS} = require("../../../../Controllers/utils/enums");
+const Product = require("../../../../../Classes/Product");
+const { ERRORS} = require("../../../../../Controllers/utils/enums");
 const {object, number} = require("yup");
 
 const schema = object({

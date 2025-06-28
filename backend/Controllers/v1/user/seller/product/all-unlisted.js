@@ -1,6 +1,6 @@
 const { object, number, string, boolean } = require("yup");
-const {CATEGORY, ERRORS} = require("../../utils/enums");
-const Product = require("../../../Classes/Product");
+const {CATEGORY, ERRORS} = require("../../../../utils/enums");
+const Product = require("../../../../../Classes/Product");
 
 const schema = object({
     category: string().oneOf([...Object.values(CATEGORY), "all"]).required(),
@@ -19,7 +19,7 @@ module.exports = async (req, res, next) => {
         const isValid = await schema.isValid(req['body']);
         if (!isValid) throw new Error(ERRORS.VALIDATION_ERROR);
         const { category, discount, offset, limit, order } = req.body;
-        const {data , count} = await Product.getProducts(offset, limit, order.column, order.direction, category, discount);
+        const {data , count} = await Product.getUserUnlistedProducts(req.user.id, offset, limit, order.column, order.direction, category, discount);
         res.status(200).send({
             statusCode: 200,
             data,

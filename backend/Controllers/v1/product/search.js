@@ -3,7 +3,7 @@ const {CATEGORY, ERRORS} = require("../../utils/enums");
 const Product = require("../../../Classes/Product");
 
 const schema = object({
-    category: string().oneOf(Object.values(CATEGORY).push("all")).required(),
+    category: string().oneOf([...Object.values(CATEGORY), "all"]).required(),
     in_stock: boolean(),
     discount: object({
         min: number().min(0).max(100).required(),

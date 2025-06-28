@@ -1,9 +1,9 @@
 const { object, number, string, boolean } = require("yup");
-const {CATEGORY, ERRORS} = require("../../../utils/enums");
-const Product = require("../../../../Classes/Product");
+const {CATEGORY, ERRORS} = require("../../../../utils/enums");
+const Product = require("../../../../../Classes/Product");
 
 const schema = object({
-    category: string().oneOf(Object.values(CATEGORY).push("all")).required(),
+    category: string().oneOf([...Object.values(CATEGORY), "all"]).required(),
     discount: boolean(),
     offset: number().min(0).max(1000000000).required(),
     limit: number().min(1).max(30).required(),

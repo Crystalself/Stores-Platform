@@ -1,9 +1,8 @@
-const Product = require("../../../../Classes/Product");
-const { ERRORS, CATEGORY} = require("../../..//utils/enums");
+const Product = require("../../../../../Classes/Product");
+const { ERRORS, CATEGORY} = require("../../../../utils/enums");
 const { object, number, string, array} = require("yup");
-const Helper = require("../../../utils/Helper");
+const Helper = require("../../../../utils/Helper");
 
-// Validation schema for adding a product
 const schema = object({
     name: string().min(3).max(100).required(),
     description: string().min(10).max(2000).required(),

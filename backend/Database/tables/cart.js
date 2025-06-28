@@ -2,7 +2,6 @@ const knex = require("../config/knex");
 module.exports = (table) => {
     table.increments('id').primary();
     table.integer('user_id').unsigned();
-    table.json('products');
     table.float('total');
     table.boolean('delivery');
     table.string('address');

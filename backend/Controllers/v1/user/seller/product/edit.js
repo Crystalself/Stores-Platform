@@ -1,7 +1,7 @@
-const Product = require("../../../../Classes/Product");
-const { ERRORS, CATEGORY} = require("../../..//utils/enums");
+const Product = require("../../../../../Classes/Product");
+const { ERRORS, CATEGORY} = require("../../../../utils/enums");
 const {object, string, array, number, boolean} = require("yup");
-const Helper = require("../../../utils/Helper");
+const Helper = require("../../../../utils/Helper");
 
 const schema = object({
     id: number().min(1).max(1000000000).required(),

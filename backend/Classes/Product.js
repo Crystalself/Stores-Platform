@@ -1,6 +1,7 @@
-const {Product, knex, User} = require("../Database/models");
+const {Product, knex} = require("../Database/models");
 const {uploadFiles, uploadFilesArray} = require("../Controllers/utils/upload-file");
 const Helper = require("../Controllers/utils/Helper");
+const {ERRORS} = require("../Controllers/utils/enums");
 
 module.exports = class {
      static productOwnerQuery = knex
@@ -103,5 +104,11 @@ module.exports = class {
     }
     static async enlistProduct(id) {
         return Product().update({unlisted: false}).where({id});
+    }
+    static async getCheckedProduct(id) {
+        const product = await Product.getProduct(id);
+        if(!product || product.unlisted) throw new Error(ERRORS.PRODUCT_DOES_NOT_EXIST);
+        if(!product.in_stock) throw new Error(ERRORS.PRODUCT_OUT_OF_STOCK);
+        return product;
     }
 }
